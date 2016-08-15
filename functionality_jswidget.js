@@ -1,5 +1,5 @@
-//javascript:(
-function removeFBLikes() {
+javascript:(
+function() {
   function simulateMouseover(node) {
     var evt = new MouseEvent('mouseover')
     node.dispatchEvent(evt);
@@ -42,4 +42,4 @@ function removeFBLikes() {
     this.setTimeout(hideLikes, 2000, notifsCount);
   }
 }
-//)();
+)();
