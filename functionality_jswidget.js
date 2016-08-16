@@ -1,12 +1,11 @@
 javascript:(
 function() {
   function simulateMouseover(node) {
-    var evt = new MouseEvent('mouseover')
+    var evt = new MouseEvent('mouseover');
     node.dispatchEvent(evt);
   }
   function hideLikes(notifsCount) {
     var reactRoot = document.getElementById('fbNotificationsFlyout').childNodes[2].firstChild.firstChild;
-    console.log(reactRoot);
     var newNotifsCount = notifsCount;
     var jewelItems = reactRoot.firstChild.firstChild.firstChild.firstChild.firstChild.childNodes;
     for (var i = 0; i < jewelItems.length; i++) {
@@ -14,9 +13,7 @@ function() {
       var dataGt = (node.attributes['data-gt'] != undefined) ? JSON.parse(node.attributes['data-gt'].nodeValue) : {};
       if (node.classList.contains('jewelItemNew') && dataGt.hasOwnProperty('notif_type')) {
         if (dataGt['notif_type'] == 'like' || dataGt['notif_type'] == 'feedback_reaction_generic') {
-          console.log('removing jewelItemNew class');
           node.classList.remove('jewelItemNew');
-          console.log('decrementing newNotifsCount');
           newNotifsCount--;
         }
       }
@@ -24,14 +21,14 @@ function() {
     if (newNotifsCount != notifsCount) {
       var notifsCountVal = document.getElementById('notificationsCountValue');
       var notifsCountNode = notifsCountVal.firstChild;
+      var title = document.title;
       if (newNotifsCount == 0) {
-        console.log('removing hasNew class');
         jewel.classList.remove('hasNew');
-        console.log('adding hidden_elem class to notificationsCountValue elem');
         notifsCountVal.classList.add('hidden_elem');
+        title = 'Facebook';
       } else if (newNotifsCount > 0) {
-        console.log('changing notifs count val');
         notifsCountNode.nodeValue = newNotifsCount;
+        title = '(' + newNotifsCount + ') Facebook';
       }
     }
   }
